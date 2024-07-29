@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Admin\Item\StatusItemRequest;
-use App\Http\Requests\Admin\Item\StoreItemRequest;
-use App\Http\Requests\Admin\Item\UpdateItemRequest;
+
 use App\Models\Item;
-use Illuminate\Http\Request;
+
 
 use App\Tables\Items;
-use Illuminate\Contracts\Cache\Store;
 use ProtoneMedia\Splade\Facades\Toast;
 
 class ItemController extends Controller
