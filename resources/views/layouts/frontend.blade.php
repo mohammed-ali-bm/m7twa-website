@@ -13,7 +13,7 @@
 
 
     <div class="intro-wrapper">    <div class="site-header">
-        <img src="{{ asset('assets/images/org-logo.png') }}" alt="logo" class="front-logo">
+        <img src="{{ asset('assets/images/logo.png') }}" alt="logo" class="front-logo">
         <nav>
             <ul>
                 <li><a href="">الرئيسية</a></li>

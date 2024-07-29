@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Exports\GuestsExport;
 use App\Models\Business;
+use App\Models\Flat;
 use App\Models\Guest;
 use App\Models\Item;
 use App\Models\Offer;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Register;
 use App\Tables\Offers;
 use Auth;
 use Carbon\Carbon;
@@ -21,9 +23,23 @@ class IndexController extends Controller
     //
 
 
-    function home(){
+    function home()
+    {
 
-        return view("index");
+
+
+
+        $args['attrs'] = \App\Models\Attr::all();
+
+
+        $args['flats'] = Flat::orderBy('id', 'DESC')->limit(10)->get();
+        return view("index" , $args)  ;
+    }
+
+    function view()
+    {
+
+        return view("flats.view");
     }
 
     function sallaWebhook(Request $request)
@@ -146,6 +162,16 @@ class IndexController extends Controller
 
 
 
+        if (in_array($request->set_status, ['pending', "done", "not_interested",])) {
+
+
+            $register = Register::find($request->id);
+
+            if ($register) {
+                $register->status = $request->set_status;
+                $register->save();
+            }
+        }
 
         // $guests = Guest::select('name', 'email', 'phone',"token")->get()->toArray();
 
@@ -163,11 +189,10 @@ class IndexController extends Controller
             ->keywords(__('main.site_keywords'));
 
 
-        $args['all_count'] = Guest::count();
-        $args['attended_count'] = Guest::where("status", "attended")->count();
-        $args['pending_count'] = Guest::where("status", "pending")->count();
-        $args['withdraw_count'] = Guest::where("status", "withdraw")->count();
-        $args['confirmed_count'] = Guest::where("confirmed", 1)->count();
+        $args['all_count'] = Register::count();
+        $args['done_count'] = Register::where("status", "attended")->count();
+        $args['pending_count'] = Register::where("status", "pending")->count();
+        $args['not_interested_count'] = Register::where("status", "withdraw")->count();
 
 
         $where = [];
@@ -177,19 +202,19 @@ class IndexController extends Controller
         }
 
 
-        $args['guests'] = Guest::select("guests.*", \DB::raw("CONCAT('966' , phone) as phone"))->orderBy('id', 'DESC');
+        $args['registers'] = Register::select("registers.*", \DB::raw("CONCAT('966' , mobile) as mobile"))->orderBy('id', 'DESC');
 
         if (count($where)) {
 
-            $args['guests'] = $args['guests']->where($where);
+            $args['registers'] = $args['registers']->where($where);
         }
 
-        $args['guests'] = $args['guests']->paginate(300);
+        $args['registers'] = $args['registers']->paginate(300);
 
 
         if ($request->has('export')) {
 
-            return Excel::download(new GuestsExport($args['guests']), 'الضيوف.xlsx');
+            return Excel::download(new GuestsExport($args['registers']), 'المتقدمين.xlsx');
         }
         return view("layouts.frontend.result", $args);
     }

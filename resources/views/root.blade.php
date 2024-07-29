@@ -215,15 +215,7 @@
 
 
 
-            $("body").on("click", "[data-toggle='animate-section']", function(e) {
-
-                e.preventDefault();
-                let section = $(this).attr("data-target");
-                $("html,body").animate({
-                    scrollTop: $(section).offset().top - 200
-                }, 1000);
-
-            });
+         
             $("body").on("click", "[data-toggle='expand']", function(e) {
 
 

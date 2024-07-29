@@ -2,6 +2,112 @@
 
 // const tooltip = new Tooltip($targetEl, $triggerEl, options, instanceOptions);
 
+
+
+
+
+
+const phrase = 
+"نـــص الأمـــر الملكي علـــى أن تتحمـــل الدولـــة ضريبة التصرفات العقارية عما لا يزيد عن مبلغ )1،000،000( مليون ريال من سعر شراء المسكن الأول للمواطن.";
+document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("word-container");
+    const body = document.getElementById("word-body");
+    const refs = [];
+
+    const splitWords = (phrase) => {
+        const words = phrase.split(" ");
+        words.forEach((word, i) => {
+            const span = document.createElement("span");
+            span.textContent = word + " ";
+            refs.push(span);
+            body.appendChild(span);
+        });
+    };
+
+    const createAnimation = () => {
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.to(refs, {
+            scrollTrigger: {
+                trigger: container,
+                scrub: true,
+                start: "top 80%",
+                end: `+=${window.innerHeight / 2}`,
+            },
+            opacity: 1,
+            ease: "none",
+            stagger: 0.05
+        });
+    };
+
+    splitWords(phrase);
+    createAnimation();
+});
+
+
+
+
+
+const scrollers = document.querySelectorAll(".scroller");
+addAnimation();
+// If a user hasn't opted in for recuded motion, then we add the animation
+// if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+
+// }
+
+function addAnimation() {
+
+  // alert();
+  scrollers.forEach((scroller) => {
+    // add data-animated="true" to every `.scroller` on the page
+    scroller.setAttribute("data-animated", true); 
+
+
+    // Make an array from the elements within `.scroller-inner`
+    const scrollerInner = scroller.querySelector(".scroller__inner");
+    const scrollerContent = Array.from(scrollerInner.children);
+
+    // For each item in the array, clone it
+    // add aria-hidden to it
+    // add it into the `.scroller-inner`
+    scrollerContent.forEach((item) => {
+      const duplicatedItem = item.cloneNode(true);
+      duplicatedItem.setAttribute("aria-hidden", true);
+      scrollerInner.appendChild(duplicatedItem);
+    });
+  });
+}
+
+
+
+$(function(){
+
+  window.addEventListener('scroll', function() {
+    var header = document.querySelector('.site-header');
+
+    if (window.scrollY > 0) {
+        header.classList.add('fixed');
+    } else {
+        header.classList.remove('fixed');
+    }
+});
+
+
+
+  $("body").on("click", "[data-toggle='animate-section']", function(e) {
+    
+    e.preventDefault();
+    let section = $(this).attr("data-target");
+    $("html,body").animate({
+        scrollTop: $(section).offset().top - 200
+    }, 1000);
+
+});
+
+
+});
+
+
+
 window.addEventListener('scroll', function () {
   var header = document.querySelector('.site-header');
 
@@ -86,11 +192,11 @@ function initScroll() {
 
   scrollLeftElements.forEach((element) => {
     const anim = gsap.fromTo(element, {
-      x: 30,
+      x: -100,
       // opacity: 0,
 
     }, {
-      x: element.getAttribute("data-to") || -100,
+      x: element.getAttribute("data-to") || 0,
 
       duration: 0.8,
       ease: "ease-in",
@@ -197,7 +303,7 @@ function initScroll() {
 
     gsap.to(counterObject, {
       count: targetCount,
-      duration: 2, // Adjust the duration as needed
+      duration: 1, // Adjust the duration as needed
       ease: "power1.out", // Adjust the ease as needed
       scrollTrigger: {
         trigger: element,
@@ -234,6 +340,38 @@ function initScroll() {
 
   });
 
+
+
+  const cards = gsap.utils.toArray(".guarantee-item");
+
+
+  if( window.innerWidth < 580){
+cards.forEach((card, index) => {
+  const tween = gsap.to(card, {
+    scrollTrigger: {
+      trigger: card,
+      start: () => `top bottom-=100`,
+      end: () => `top top+=40`,
+      scrub: true,
+      markers: false,
+      invalidateOnRefresh: true
+    },
+    ease: "none",
+    scale: () => 1 - (cards.length - index) * 0.025
+  });
+
+  ScrollTrigger.create({
+    trigger: card,
+    start: "top top",
+    pin: true,
+    pinSpacing: false,
+    markers: false,
+    id: 'pin',
+    end: 'max',
+    invalidateOnRefresh: true,
+  });
+});
+  }
 
   const scrollFadeElements = gsap.utils.toArray(".scroll-fade-only");
 
@@ -363,16 +501,16 @@ window.addEventListener("load", initScroll);
 
 
 function toggleMenu() {
-  const overlay1 = document.querySelector('.overlay-1-menu');
+
   const overlay2 = document.querySelector('.overlay-2-menu');
 
-  if (overlay1.style.display === 'none') {
-    overlay1.style.display = 'block';
+  if (overlay2.style.display === 'none') {
+
     overlay2.style.display = 'flex';
     animateMenuItems();
     toggleBurgerIcon(true);
   } else {
-    overlay1.style.display = 'none';
+
     overlay2.style.display = 'none';
     toggleBurgerIcon(false);
   }
@@ -380,12 +518,7 @@ function toggleMenu() {
 
 
 function animateMenuItems() {
-  const menuItems = document.querySelectorAll('.menu-item');
-
-  menuItems.forEach((item, index) => {
-    const animationDelay = 1 + index * 0.1;
-    item.style.animationDelay = animationDelay + 's';
-  });
+ 
 }
 
 
@@ -402,7 +535,7 @@ function toggleBurgerIcon(isCloseIcon) {
     burgerBars[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
   } else {
     burgerBars.forEach(bar => {
-      bar.style.backgroundColor = '#333'; // Set the color back to original
+      bar.style.backgroundColor = '#ccc'; // Set the color back to original
     });
 
     burgerBars[0].style.transform = 'none';

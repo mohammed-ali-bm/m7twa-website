@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Cache;
 use PhpParser\Node\Expr\FuncCall;
 
 function get_card_status_label($status)
@@ -1578,5 +1579,15 @@ function calculateAvg($factors)
     }
 
     return  $i == 0 ? 0 :   $total / $i;
+
 }
-?>
+
+
+function setting($key, $default = null)
+{
+    $settings = Cache::get('settings', []);
+
+    return $settings[$key] ?? $default;
+}
+
+

@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\SaudiMobileNumber;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRegisterRequest extends FormRequest
+class StoreFlatRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,9 @@ class StoreRegisterRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
 
-            "mobile" => ['required', 'string', 'max:255', new SaudiMobileNumber],
-            "service" => ['required', 'string', 'max:255'],
-            "coupon" => ['nullable', 'string', 'max:255'],
+            "area" => ['required', 'string', 'max:255',],
+            "price" => ['required', 'string', 'max:255',],
+            "attrs" => ['array'],
         ];
     }
 

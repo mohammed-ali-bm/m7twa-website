@@ -5,18 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Register extends Model
+class Attr extends Model
 {
     use HasFactory;
 
 
-    protected $table = 'registers';
+    protected $table = 'attrs';
 
     public $timestamps = true;
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['id', "name",   "mobile","service" , "coupon" ,"status"];
+    protected $fillable = ['id', "name"];
 
 
+    function order(){
+        return $this->belongsTo(Order::class);
+    }
 }

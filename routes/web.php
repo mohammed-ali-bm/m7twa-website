@@ -32,12 +32,17 @@ Route::middleware('splade')->group(function () {
     // Registers routes to support async File Uploads with Filepond...
     Route::spladeUploads();
 
+    Route::get('/view', \App\Http\Controllers\IndexController::class . "@view")->name("view");
+
+
+    Route::resource('flats', \App\Http\Controllers\FlatController::class);
 
 
     Route::get('form/تنمية-المهارات-القيادية', \App\Http\Controllers\RegisterController::class . "@registerPage")->name("registers.index");
     Route::post('form/تنمية-المهارات-القيادية', \App\Http\Controllers\RegisterController::class . "@register")->name("registers.submit");
     Route::get('form/thankyou', \App\Http\Controllers\RegisterController::class . "@thankyou")->name("registers.thankyou");
 
+    Route::resource('registers', \App\Http\Controllers\RegisterController::class);
 
     Route::get('generate-qr-url', \App\Http\Controllers\QrController::class . "@index")->name("qr.index");
     Route::get('generate-qr-url-submit', \App\Http\Controllers\QrController::class . "@generate")->name("qr.generate");
@@ -82,6 +87,15 @@ Route::middleware('splade')->group(function () {
     Route::get('send-your-questions', \App\Http\Controllers\SessionController::class . "@currentSession")->name("questions.sent");
 
     Route::middleware('auth')->group(function () {
+
+
+
+        Route::get('dashboard/settings', \App\Http\Controllers\Dashboard\SettingController::class . "@index")->name('dashboard.settings.index');
+        Route::put('dashboard/settings', \App\Http\Controllers\Dashboard\SettingController::class . "@update")->name('dashboard.settings.update');
+
+
+
+
 
 
         Route::get('ratings-results', \App\Http\Controllers\RatingController::class . "@results")->name("");

@@ -115,15 +115,15 @@
 
                                 <div class="sta-item attended">
                                     <div class="">
-                                        <h4>إجمالي الحاضرين</h4>
-                                        <h2>{{ $attended_count }}</h2>
+                                        <h4>إجمالي الحجوزات</h4>
+                                        <h2>{{ $done_count }}</h2>
                                     </div>
 
                                     <i class="fi fi-rr-check"></i>
                                 </div>
                                 <div class="sta-item not-attended">
                                     <div class="">
-                                        <h4>لم يحضر بعد</h4>
+                                        <h4>بإنتظار التواصل</h4>
                                         <h2>{{ $pending_count }}</h2>
                                     </div>
 
@@ -131,24 +131,17 @@
                                 </div>
                                 <div class="sta-item withdrawed">
                                     <div class="">
-                                        <h4>إجمالي المعتذرين</h4>
-                                        <h2>{{ $withdraw_count }}</h2>
+                                        <h4>غير المهتمين</h4>
+                                        <h2>{{ $not_interested_count }}</h2>
                                     </div>
 
                                     <i class="fi fi-rr-circle-xmark"></i>
                                 </div>
-                                <div class="sta-item attended">
-                                    <div class="">
-                                        <h4>تأكد حضورهم</h4>
-                                        <h2>{{ $confirmed_count }}</h2>
-                                    </div>
 
-                                    <i class="fi fi-rr-badge-check"></i>
-                                </div>
 
                             </div>
 
-                            <h2 class="sub-title">قائمة الحضور</h2>
+                            <h2 class="sub-title">قائمة المسجلين</h2>
 
 
                             <div class="filters">
@@ -157,79 +150,130 @@
                                         href="{{ url('results') }}">
                                         الكل
                                     </a>
-                                    <a class="btn-circle {{ activeClass('attended', request()->get('status')) }} "
-                                        href="?status=attended">
+                                    <a class="btn-circle {{ activeClass('done', request()->get('status')) }} "
+                                        href="?status=done">
 
                                         <i class="fi fi-rr-check"></i>
-                                        الحاضرين فقط
+                                        تم الحجز
                                     </a>
-                                    <a class="btn-circle {{ activeClass('pending', request()->get('status')) }}"
+                                    <a class="btn-circle {{ activeClass('pending', request()->get('status')) }} "
                                         href="?status=pending">
-                                        <i class="fi fi-rr-info"></i>
-                                        الغير حاضرين فقط
+
+                                        <i class="fi fi-rr-check"></i>
+                                        بإنتظار التواصل
                                     </a>
-                                    <a class="btn-circle {{ activeClass('withdraw', request()->get('status')) }}"
-                                        href="?status=withdraw">
+                                    <a class="btn-circle {{ activeClass('not_inertested', request()->get('status')) }}"
+                                        href="?status=not_inertested">
                                         <i class="fi fi-rr-circle-xmark"></i>
-                                        المعتذرين عن الحضور
+                                        غير مهتمين
                                     </a>
+
                                 </div>
                                 <a class="btn-circle" href="{{ request()->fullUrlWithQuery(['export' => 'true']) }}">
                                     <i class="fi fi-rr-file-export"></i>
 
                                 </a>
                             </div>
-                            @foreach ($guests as $guest)
+                            @foreach ($registers as $register)
                                 <div class="attended-item">
 
                                     <div class="name">
-                                        <h4>{{ $guest->name }}</h4>
-                                        <p>{{ $guest->job_title }} - {{ $guest->company }}</p>
+                                        <h4>{{ $register->name }}</h4>
+                                        <p> <i class="fi fi-rr-phone-flip d-none"></i> <a
+                                                href="tel:{{ $register->mobile }}">{{ $register->mobile }}</a></p>
                                     </div>
                                     <div class="contact">
-                                        <h4> <i class="fi fi-rr-phone-flip d-none"></i> <a
-                                                href="tel:{{ $guest->phone }}">{{ $guest->phone }}</a></h4>
-                                        <p><i class="fi fi-rr-envelope d-none"></i><a
-                                                href="mailto:{{ $guest->email }}">{{ $guest->email }}</a></p>
+
+                                        <h4>{{ $register->service }}</h4>
+
                                     </div>
                                     <div class="date">
-                                        <p>{{ timeBetween(strtotime($guest->created_at)) }}</p>
+                                        <p>{{ timeBetween(strtotime($register->created_at)) }}</p>
                                     </div>
                                     <div class="status">
-                                        
 
-                                        @if ($guest->status == 'attended')
-                                        <div class="status attended">
-                                            <i class="fi fi-rr-check"></i>
-                                            حضر 
-                                        </div>
-                                            
+
+                                        @if ($register->status == 'done')
+                                            <div class="status attended">
+                                                <i class="fi fi-rr-check"></i>
+                                                تم الحجز
+                                            </div>
+                                        @elseif($register->status == 'pending')
+                                            <div class="status not-attended">
+                                                <i class="fi fi-rr-info"></i>
+                                                بإنتظار التواصل
+                                            </div>
+                                        @elseif($register->status == 'not_interested')
+                                            <div class="status not-attended">
+                                                <i class="fi fi-rr-x-circle-mark"></i>
+                                                غير مهتم
+                                            </div>
                                         @else
-
-                                        <div class="status not-attended">
-                                            <i class="fi fi-rr-info"></i>
-                                            لم يحضر 
-                                        </div>
+                                            <div class="status not-attended">
+                                                <i class="fi fi-rr-info"></i>
+                                                غير محدد
+                                            </div>
                                         @endif
                                     </div>
                                     <div class="options">
-                                        <a href="#"><i class="fi fi-rr-menu-dots-vertical"></i></a>
-                                        <a href="#" data-toggle="expand"
-                                            data-target="#details-{{ $guest->id }}"><i
-                                                class="fi fi-rr-angle-small-down"></i></a>
+
+                                        <v-menu transition="slide-y-transition">
+                                            <template v-slot:activator="{ props }">
+
+                                                <button type="button" ref="addButton" v-bind="props"
+                                                    class=" dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">
+                                                    <i class="fi fi-rr-menu-dots-vertical"></i> </button>
+
+                                            </template>
+
+                                            <v-list>
+
+
+                                                <v-list-item :key="fdsfdsf">
+                                                    <v-list-item-title>
+                                                        <Link
+                                                            href="{{ request()->fullUrlWithQuery(['set_status' => 'done', 'id' => $register->id]) }}">
+                                                        <i
+                                                            class=
+                                                            "fi fi-rr-check"></i>
+                                                        تم الحجز
+                                                        </Link>
+                                                    </v-list-item-title>
+                                                </v-list-item>
+
+
+
+
+                                                <v-list-item :key="fdsfdsf">
+                                                    <v-list-item-title>
+                                                        <Link
+                                                            href="{{ request()->fullUrlWithQuery(['set_status' => 'pending', 'id' => $register->id]) }}">
+                                                        <i class="fi fi-rr-info"></i> بإنتظار التواصل</Link>
+                                                    </v-list-item-title>
+                                                </v-list-item>
+
+                                                <v-list-item :key="fdsfdsf">
+                                                    <v-list-item-title>
+                                                        <Link
+                                                            href="{{ request()->fullUrlWithQuery(['set_status' => 'not_interested', 'id' => $register->id]) }}">
+                                                        <i class="fi fi-rr-x-circle-mark"></i> غير مهتم</Link>
+                                                    </v-list-item-title>
+                                                </v-list-item>
+                                            </v-list>
+                                        </v-menu>
 
 
 
                                     </div>
 
-                                    <div class="expandable " id="details-{{ $guest->id }}">
+                                    <div class="expandable " id="details-{{ $register->id }}">
 
 
                                         <br>
-                                        <img src="{{ asset('storage/img/qr-code/' . $guest->qr_src) }}" alt="">
+                                        <img src="{{ asset('storage/img/qr-code/' . $register->qr_src) }}" alt="">
 
                                         <div class="expandable-options d-none">
-                                            <a href="{{ asset('storage/img/qr-code/' . $guest->qr_src) }}" download
+                                            <a href="{{ asset('storage/img/qr-code/' . $register->qr_src) }}" download
                                                 class="flat-button"><i class="fi fi-rr-file-download"></i>
                                                 تحميل
                                                 الدعوة</a>
@@ -238,10 +282,10 @@
                                                 إرسال </a>
                                         </div>
                                     </div>
-                            </div>
+                                </div>
                             @endforeach
 
-                            
+
                         </div>
 
 
@@ -260,5 +304,4 @@
     </div>
 
 
-    </div>
 @endsection

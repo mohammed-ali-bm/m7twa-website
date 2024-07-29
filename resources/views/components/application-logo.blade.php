@@ -1,1 +1,1 @@
-<img src="{{ asset('assets/images/org-logo.png') }}" class="header-logo"/>
+<img src="{{ asset('assets/images/logo.png') }}" class="header-logo"/>

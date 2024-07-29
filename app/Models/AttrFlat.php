@@ -5,18 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Register extends Model
+class AttrFlat extends Model
 {
     use HasFactory;
 
 
-    protected $table = 'registers';
+    protected $table = 'attr_flat';
 
-    public $timestamps = true;
+    public $timestamps = false;
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['id', "name",   "mobile","service" , "coupon" ,"status"];
-
+    protected $fillable = ['id', "flat_id" , "attr_id" , "text"];
 
 }
