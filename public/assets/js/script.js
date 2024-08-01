@@ -8,7 +8,7 @@
 
 
 const phrase = 
-"نـــص الأمـــر الملكي علـــى أن تتحمـــل الدولـــة ضريبة التصرفات العقارية عما لا يزيد عن مبلغ )1،000،000( مليون ريال من سعر شراء المسكن الأول للمواطن.";
+"نـــص الأمـــر الملكي علـــى أن تتحمـــل الدولـــة ضريبة التصرفات العقارية عما لا يزيد عن مبلغ (1،000،000)  مليون ريال من سعر شراء المسكن الأول للمواطن.";
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("word-container");
     const body = document.getElementById("word-body");

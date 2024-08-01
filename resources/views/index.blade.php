@@ -18,9 +18,9 @@
 
 
 
-            <div class="flex-apart ">
-                <x-glowing-button></x-glowing-button>
-                <a href="#" class="secondary-button">تحميل الكتيب</a>
+            <div class="flex-apart  mr-auto ml-auto">
+                <x-glowing-button data-toggle='animate-section' data-target="#services-section"></x-glowing-button>
+                <a href="{{ asset('assets/اصول الدار.pdf') }}" download="الكتيب التعريفي.pdf" class="secondary-button">تحميل الكتيب</a>
             </div>
 
 
@@ -35,7 +35,7 @@
 
 
 
-    <div class="site-section">
+    <div class="site-sections">
         <div id="word-container">
             <div id="word-body"></div>
         </div>
@@ -48,8 +48,7 @@
     <div class="container site-section">
 
         <h2 class="animated-title section-title">موقع المشروع</h2>
-        <p>المبني يتكـــون من دورين وملحق مقســـوم علـــى مبنيـــن كل مبنى يتكون مـــن مصعد ودرج مســـتقل
-            عن الآخر</p>
+        <p>يقع النموذج الأول لمشروع أصول الدار في حي النسيم علي طريق الملك فهد ( طريق المطار)</p>
 
 
         <div class="scroller" data-animated="true" data-speed="fast" data-direction="right">

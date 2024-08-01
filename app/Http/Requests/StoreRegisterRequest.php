@@ -26,8 +26,8 @@ class StoreRegisterRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
 
             "mobile" => ['required', 'string', 'max:255', new SaudiMobileNumber],
-            "service" => ['required', 'string', 'max:255'],
-            "coupon" => ['nullable', 'string', 'max:255'],
+            // "service" => ['required', 'string', 'max:255'],
+            // "coupon" => ['nullable', 'string', 'max:255'],
         ];
     }
 

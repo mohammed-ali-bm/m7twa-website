@@ -1,5 +1,5 @@
 <div class="glowing-button-container">
-    <button aria-label="سجل اهتمامك">
+    <button aria-label="سجل اهتمامك" {{ $attributes}}> 
       <div>
         <span class="inner">
           <div class="particles" aria-hidden="true"></div>
