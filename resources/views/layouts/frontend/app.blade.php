@@ -42,8 +42,8 @@
 
     <div class="intro-wrapper">
         <div class="site-header">
-            <Link href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="logo"
-                class="front-logo"></Link>
+            <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="logo"
+                class="front-logo"></a>
             <nav class="site-nav">
                 <ul>
 
@@ -96,11 +96,10 @@
                             class="footer-logo"></Link>
                         <p class="footer-site-description">
 
-                            شركة أصول الدار العقارية تعتبر من الشركات الرائدة في مجال تطوير وإدارة العقارات الفاخرة.
-                            تأسست برؤية تهدف إلى تقديم حلول عقارية مبتكرة ومستدامة تلبي احتياجات السوق المتنوعة. تتميز
-                            الشركة بمشاريعها المتميزة التي تجمع بين التصميم العصري والجودة العالية، وتحرص على تقديم
-                            خدمات متكاملة تتجاوز توقعات العملاء. تسعى أصول الدار لتعزيز رضا العملاء من خلال تقديم تجربة
-                            سكنية فريدة تلبي أعلى معايير الراحة والأمان.
+                            مجموعة أصول الدار للخدمات العقاريه والتطوير العقاري واعمال المقاولات
+
+                            وتحرص على تقديم خدمات متكاملة تتجاوز توقعات العملاء. تسعى أصول الدار لتعزيز رضا العملاء من
+                            خلال تقديم تجربة سكنية فريدة تلبي أعلى معايير الراحة والأمان.
                         </p>
                     </div>
 
@@ -111,5 +110,30 @@
             </footer>
         </div>
 
+    </div>
+</div>
+
+
+<div class="rs-video whatsapp-fixed">
+    <div class="animate-border">
+        <a alt="Whatsapp" class="video-vemo-icon btn-whatsapp" aria-label="WhatsApp" href="http://wa.me/966563329988"
+            target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion(undefined)"><i
+                class="fi fi-brands-whatsapp"></i>
+            <div class="sm-red-dot"></div>
+            <div id="quick-message" class="quick-message line-up">
+                <p>
+                    تحتاج لمساعدة ؟ اتصل بنا على الواتس اب
+                </p>
+                <div class="seta-direita">
+                </div>
+            </div>
+        </a>
+    </div>
+    <div id="hover-message" class="quick-message">
+        <p>
+            تحتاج لمساعدة ؟ اتصل بنا على الواتس اب
+        </p>
+        <div class="seta-direita">
+        </div>
     </div>
 </div>

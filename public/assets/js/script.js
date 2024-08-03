@@ -7,6 +7,10 @@
 
 
 
+
+if(1 == 10){
+
+
 const phrase = 
 "نـــص الأمـــر الملكي علـــى أن تتحمـــل الدولـــة ضريبة التصرفات العقارية عما لا يزيد عن مبلغ (1،000،000)  مليون ريال من سعر شراء المسكن الأول للمواطن.";
 document.addEventListener("DOMContentLoaded", () => {
@@ -43,7 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
     createAnimation();
 });
 
+}
 
+
+
+
+
+
+$(function(){
 
 
 
@@ -60,6 +71,7 @@ function addAnimation() {
   scrollers.forEach((scroller) => {
     // add data-animated="true" to every `.scroller` on the page
     scroller.setAttribute("data-animated", true); 
+
 
 
     // Make an array from the elements within `.scroller-inner`
@@ -79,7 +91,14 @@ function addAnimation() {
 
 
 
-$(function(){
+  setTimeout(function () {
+    $('#quick-message').slideDown(300, function(){
+      $(this).slideUp();
+    });
+  }, 3000);
+
+
+
 
   window.addEventListener('scroll', function() {
     var header = document.querySelector('.site-header');
@@ -103,65 +122,6 @@ $(function(){
 
 });
 
-
-});
-
-
-
-window.addEventListener('scroll', function () {
-  var header = document.querySelector('.site-header');
-
-  if (window.scrollY > 0) {
-    header.classList.add('fixed');
-  } else {
-    header.classList.remove('fixed');
-  }
-});
-
-
-document.addEventListener("DOMContentLoaded", function (event) {
-
-  animation_text_1("#text-anim");
-});
-
-function animation_text_1(element) {
-
-
-  //  check if element exist
-  if (document.querySelector(element) == null)
-    return;
-
-  var newText = "";
-  var theText = document.querySelector(element);
-  //   theText.style.opacity = 1;
-  var words = theText.innerText.split(" ");
-
-  for (var i = 0; i < words.length; i++) {
-    newText += "<div>";
-    if (i > 0) {
-      newText += " "; // Add space between words
-    }
-    newText += words[i];
-    newText += "</div>";
-  }
-
-  theText.innerHTML = newText;
-
-  gsap.fromTo(element + " div", { opacity: 0, y: 0, x: 0 }, {
-    duration: 2,
-    opacity: 1,
-    y: 0,
-
-
-
-    delay: 1,
-
-
-    // x:20,
-    stagger: .1,
-    ease: "power2.out"
-  });
-}
 
 function initScroll() {
 
@@ -492,6 +452,67 @@ cards.forEach((card, index) => {
 
 
 }
+initScroll();
+
+});
+
+
+
+window.addEventListener('scroll', function () {
+  var header = document.querySelector('.site-header');
+
+  if (window.scrollY > 0) {
+    header.classList.add('fixed');
+  } else {
+    header.classList.remove('fixed');
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", function (event) {
+
+  animation_text_1("#text-anim");
+});
+
+function animation_text_1(element) {
+
+
+  //  check if element exist
+  if (document.querySelector(element) == null)
+    return;
+
+  var newText = "";
+  var theText = document.querySelector(element);
+  //   theText.style.opacity = 1;
+  var words = theText.innerText.split(" ");
+
+  for (var i = 0; i < words.length; i++) {
+    newText += "<div>";
+    if (i > 0) {
+      newText += " "; // Add space between words
+    }
+    newText += words[i];
+    newText += "</div>";
+  }
+
+  theText.innerHTML = newText;
+
+  gsap.fromTo(element + " div", { opacity: 0, y: 0, x: 0 }, {
+    duration: 2,
+    opacity: 1,
+    y: 0,
+
+
+
+    delay: 1,
+
+
+    // x:20,
+    stagger: .1,
+    ease: "power2.out"
+  });
+}
+
 
 
 

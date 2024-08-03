@@ -34,6 +34,7 @@ Route::middleware('splade')->group(function () {
 
     Route::get('/view', \App\Http\Controllers\IndexController::class . "@view")->name("view");
 
+    Route::get('/flats/building/{building}', \App\Http\Controllers\FlatController::class . "@building")->name("flats.building");
 
     Route::resource('flats', \App\Http\Controllers\FlatController::class);
 

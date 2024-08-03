@@ -593,7 +593,7 @@ img.front-logo {
     flex: 1;
     display: flex;
     align-items: center;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 
@@ -620,13 +620,14 @@ img.front-logo {
     margin-top: 3rem;
 }
 
-.site-intro a.secondary-button {
+ a.secondary-button {
     padding: 1rem 2rem;
     background: #fff;
     display: inline-block;
     position: relative;
     border-radius: 10px;
     box-shadow: 3px 4px 40px #44147173;
+    color: #333;
 }
 
 .sta-container {
@@ -895,6 +896,35 @@ footer ul {
 
 @media screen and (max-width:580px) {
 
+
+	body .site-section{
+		margin:2rem 0px;
+	}
+body .features-list .feature-item {
+    flex: 45% !important;
+}
+
+body .whatsapp-fixed {
+    left: 20px;
+}
+
+a.video-vemo-icon.btn-whatsapp {}
+
+body .btn-whatsapp {
+    width: 50px !important;
+    height: 50px !important;
+    line-height: 60px !important;
+}
+
+body div#hover-message {
+    max-width: 200px;
+    height: auto;
+    line-height: 20px !important;
+}
+
+    body .large-flex-3{
+        display: block;
+    }
     body div#word-container {
         margin-top: 0px;
     }
@@ -944,6 +974,14 @@ body .main-feature-item {
     border-bottom: 1px solid #eee;
     border-left:0px;
 }
+
+	body .only-mobile{
+		display :block;
+	}
+
+    body .only-desktop{
+        display: none !important;
+        }
 
 body .site-section {
     display: block;
@@ -2260,7 +2298,7 @@ img.front-logo {
 
 .site-intro {
     display: flex;
-    height: 100vh;
+    /* height: 100vh; */
     /* padding: 5%; */
     gap: 2rem;
     overflow: hidden;
@@ -3944,10 +3982,13 @@ label.rate5-label:hover ~ .rating-value:before {
 
 
 .site-section {
-    margin: 2rem auto;
+    margin: 6rem auto;
     align-items: center;
 }
 
+.site-section p {
+    text-align: center;
+}
 .block-slung {
     font-size: 16px;
     color: var(--color-secondary-dark);
@@ -4170,10 +4211,11 @@ footer .footer-content > * {
 
 p.footer-site-description {
     text-align: justify;
-    text-align-last: right;
+    text-align-last: center;
     font-size: 15px;
     margin-top: 12px;
     color: #fff;
+    line-height: 32px;
 }
 
 ul.footer-social li {
@@ -4658,6 +4700,7 @@ body.registerProperty-not-supported button .shadow {
 .distance-item .time h4 , .guarantee-item .time h4   {
     font-size: 4rem;
     color: #fff;
+    min-width: 100px;
 }
 
 .distance-item .time , .guarantee-item .time {
@@ -4671,6 +4714,7 @@ body.registerProperty-not-supported button .shadow {
 }
 .distance-item h3  , .guarantee-item h3 {
     color: #ccc;
+    text-align: center;
 }
 
 .distance-item .time span , .guarantee-item .time span {
@@ -4722,7 +4766,7 @@ body.registerProperty-not-supported button .shadow {
   }
   
   .scroller[data-speed="fast"] {
-    --_animation-duration: 7s;
+    --_animation-duration: 8.5s;
   }
   
   .scroller[data-speed="slow"] {
@@ -4793,6 +4837,11 @@ body.registerProperty-not-supported button .shadow {
     font-size: 2rem;
 }
 
+.flats-list > * {
+    flex: 1;
+}
+
+
 .features-list {
     display: flex;
     gap: 1rem;
@@ -4804,8 +4853,9 @@ body.registerProperty-not-supported button .shadow {
 .feature-item {
     overflow: hidden;
     position: relative;
-    flex: 45%;
+    flex: auto;
     flex-grow: 1;
+    flex: 1 1 0px;
 }
 
 .feature-item:before {
@@ -4833,6 +4883,7 @@ body.registerProperty-not-supported button .shadow {
 
 .input-container .block input {
     background: #f2f2f2;
+    color: #333;
 }
 
 .feature-item h3 {
@@ -4848,6 +4899,7 @@ body.registerProperty-not-supported button .shadow {
     flex-wrap: wrap;
     gap: 1rem .5rem;
     display: flex;
+    justify-content: center;
 }
 
 .flat-item {/* From https: //css.glass */
@@ -4899,7 +4951,7 @@ body.registerProperty-not-supported button .shadow {
 }
 
 .first-section {
-    margin-top: 10rem;
+    margin-top: 10rem !important;
 }
 
 .flat-page h1 {
@@ -4967,4 +5019,247 @@ body.registerProperty-not-supported button .shadow {
      to {
         background-position: 200% center;
    }
+}
+
+img.view-flat-banner {
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+}
+
+.large-flex-3 {
+    display: flex;
+    gap: 1rem;
+}
+
+.large-flex-3 > div {
+    flex-grow: 1;
+}
+
+
+
+
+.whatsapp-fixed {
+    position: fixed;
+    bottom: 40px;
+    left: 62px;
+    z-index: 90;
+}
+
+.btn-whatsapp {
+    background-color: #30bf39;
+    color: #fff;
+    border-radius: 100%;
+    transition: background-color .5s;
+    width: 60px!important;
+    height: 60px!important;
+  line-height: 70px;
+    position: relative!important;
+    display: block;
+    transform: none!important;
+    z-index: 9;
+    text-align: center;
+  box-shadow:
+            0 1px 2px rgba(0,0,0,0.07),
+            0 2px 4px rgba(0,0,0,0.07),
+            0 4px 8px rgba(0,0,0,0.07),
+            0 8px 16px rgba(0,0,0,0.07),
+            0 16px 32px rgba(0,0,0,0.07),
+            0 32px 64px rgba(0,0,0,0.07);
+}
+
+.btn-whatsapp:hover {
+  background-color: #53ca5b;
+}
+
+.whatsapp-fixed a.video-vemo-icon.btn-whatsapp i {
+    font-size: 30px;
+    color: #fff;
+    animation: sm-shake-animation linear 1.5s infinite;
+    animation-delay: 3s;
+    top: -1px;
+}
+
+.rs-video .animate-border .video-vemo-icon:before {
+    content: "";
+    border: 2px solid #fff;
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    top: 50%;
+  opacity: 0;
+    transform: translateX(-50%) translateY(-50%);
+    display: block;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    animation: zoomBig 3.25s linear infinite;
+    -webkit-animation-delay: 4s;
+    animation-delay: 4s;
+}
+
+.rs-video .animate-border .video-vemo-icon:after {
+    content: "";
+    border: 2px solid #fff;
+    position: absolute;
+  opacity: 0;
+    z-index: 0;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: block;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    animation: zoomBig 3.25s linear infinite;
+    -webkit-animation-delay: 3s;
+    animation-delay: 3s;
+}
+
+.btn-whatsapp:after, .btn-whatsapp:before {
+    border: 2px solid #30bf39 !important;
+    width: 130px!important;
+    height: 130px!important;
+}
+
+.sm-red-dot {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+  width: 12px; height: 12px;
+  margin: 0 auto;
+    background: red;
+  transform: scale(0);
+    border-radius: 50%;
+  animation-name: notificationPoint;
+animation-duration: 300ms;
+  animation-fill-mode: forwards;
+    animation-delay: 3s;
+}
+
+.quick-message {
+    position: absolute;
+    top: 50%;
+    left: 88px;
+    width: max-content;
+    border-radius: 0;
+    background: #393b39;
+    height: auto;
+    transform: translateY(-50%);
+}
+
+.line-up {
+  opacity: 0;
+    animation-name: anim-lineUp;
+    animation-duration: 0.75s;
+  animation-fill-mode: forwards;
+    animation-delay: 5s;
+}
+
+.quick-message p {
+  line-height: 40px;
+  font-size: 15px;
+  padding: 4px 16px;
+  height: auto;
+  position: relative;
+  color: #fff;
+  margin: 0;
+  padding-bottom: 8px !important;
+  text-align: center;
+}
+
+.quick-message .seta-direita:before {
+    display: inline-block;
+    content: "";
+    vertical-align: middle;
+    margin-left: 10px;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 20px solid #393b39;
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    transform: translateY(-50%);
+}
+
+#hover-message {
+  display: none;
+}
+
+.whatsapp-fixed:hover #hover-message {
+  display: block;
+}
+
+@keyframes zoomBig{
+  0%{transform:translate(-50%,-50%) scale(.5);opacity:1;border-width:3px}
+  40%{opacity:.5;border-width:2px}
+  65%{border-width:1px}100%{transform:translate(-50%,-50%) scale(1);opacity:0;border-width:1px}}
+
+@keyframes sm-shake-animation {
+ 0% {
+  transform:rotate(0) scale(1) skew(0.017rad)
+ }
+ 25% {
+  transform:rotate(0) scale(1) skew(0.017rad)
+ }
+ 35% {
+  transform:rotate(-0.3rad) scale(1) skew(0.017rad)
+ }
+ 45% {
+  transform:rotate(0.3rad) scale(1) skew(0.017rad)
+ }
+ 55% {
+  transform:rotate(-0.3rad) scale(1) skew(0.017rad)
+ }
+ 65% {
+  transform:rotate(0.3rad) scale(1) skew(0.017rad)
+ }
+ 75% {
+  transform:rotate(0) scale(1) skew(0.017rad)
+ }
+ 100% {
+  transform:rotate(0) scale(1) skew(0.017rad)
+ }
+}
+
+@keyframes notificationPoint {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+@keyframes anim-lineUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+
+.index-first-section {
+    margin-top: 0px !important;
+}
+
+.only-mobile {
+    display: none;
+}
+.only-desktop{
+display: block;
+}
+.only-mobile .secondary-button {
+    padding: 6px 12px;
+    font-size: 14px;
+    width: 60%;
+}
+
+.gap-2 {
+    gap: 2rem !important;
+}
+
+.distances-list {
+    height: 260px;
+    overflow: hidden;
 }

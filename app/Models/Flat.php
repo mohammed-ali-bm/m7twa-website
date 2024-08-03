@@ -16,7 +16,7 @@ class Flat extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['id', "name" , "area" , "price"];
+    protected $fillable = ['id', "name" , "area"  , "building", "price"];
 
     function attrs(){
         return $this->belongsToMany(Attr::class, 'attr_flat')->select('name', 'text');

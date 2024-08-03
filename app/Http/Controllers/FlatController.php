@@ -35,6 +35,16 @@ class FlatController extends Controller
 
         return view("flats.index", $args);
     }
+    public function building($building)
+    {
+
+
+        SEO::title("قائمة الشقق للمبنى $building");
+        $args['flats'] = \App\Models\Flat::where("building", $building)->get();
+
+        $args['building'] = $building;
+        return view("flats.building", $args);
+    }
     public function store(StoreFlatRequest $request)
     {
 

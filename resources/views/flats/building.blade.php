@@ -12,7 +12,7 @@
 
 
 
-        <h1>شقق المبنى P1</h1>
+        <h1>شقق المبنى {{ $building }}</h1>
 
         <br>
         <br>
@@ -28,28 +28,10 @@
 
     </div>
 
+    <br>
+    <br>
+    <br>
 
-
-
-    <div class="flat-page container site-section  ">
-
-
-
-        <h1>شقق المبنى P2</h1>
-
-        <br>
-        <br>
-
-        <div class="flats-list">
-
-            @foreach ($flats as $flat)
-                <x-flat-item :flat="$flat" />
-            @endforeach
-        </div>
-
-
-
-    </div>
 
 
 

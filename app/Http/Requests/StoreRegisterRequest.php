@@ -27,25 +27,15 @@ class StoreRegisterRequest extends FormRequest
 
             "mobile" => ['required', 'string', 'max:255', new SaudiMobileNumber],
             // "service" => ['required', 'string', 'max:255'],
-            // "coupon" => ['nullable', 'string', 'max:255'],
+            "coupon" => ['nullable', 'string', 'max:255' , 'exists:coupons,code,status,active'],
+            "flat_id" => ['nullable', 'exists:flats,id'],
         ];
     }
 
     function messages()
     {
         return [
-            'statement.required' => 'صورة الايصال مطلوبة',
-            'statement.file' => 'صورة الايصال يجب ان تكون ملف pdf او صورة',
-            'statement.mimes' => 'صورة الايصال يجب ان تكون بهذه الصيغة: pdf, doc, docx, jpg, jpeg, png',
-            'statement.max' => 'صورة الايصال يجب ان تكون اقل من 4 ميجا بايت',
-            "id_number.required" => "رقم الهوية مطلوب",
-            "id_number.min" => "رقم الهوية يجب ان يكون 10 ارقام",
-            "id_number.max" => "رقم الهوية يجب ان يكون 10 ارقام",
-            "id_number.unique" => "رقم الهوية هذا مسجل مسبقا ، اذا قمت بالتسجيل مسبقاً لا تقم بالتسجيل مرة اخرى",
-            "mobile.unique" => "رقم الجوال هذا مسجل مسبقا ، اذا قمت بالتسجيل مسبقاً لا تقم بالتسجيل مرة اخرى",
-            "email.unique" => "رقم الجوال هذا مسجل مسبقا ، اذا قمت بالتسجيل مسبقاً لا تقم بالتسجيل مرة اخرى",
-            "company.required" => "الجهة مطلوبة",
-            "service.required" => "يرجى إختيار نوع الخدمة",
+            "coupon.exists" => "الكوبون غير صالح ، يرجى التحقق من الكوبون او المتابعة بدون إستخدام كوبون",
         ];
     }
 }

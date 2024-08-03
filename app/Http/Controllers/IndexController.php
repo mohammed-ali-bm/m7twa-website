@@ -32,7 +32,8 @@ class IndexController extends Controller
         $args['attrs'] = \App\Models\Attr::all();
 
 
-        $args['flats'] = Flat::orderBy('id', 'DESC')->limit(10)->get();
+        $args['p1_flats'] = Flat::where("building" , "p1")->orderBy('id', 'DESC')->limit(10)->get();
+        $args['p2_flats'] = Flat::where("building" , "p2")->orderBy('id', 'DESC')->limit(10)->get();
         return view("index" , $args)  ;
     }
 
