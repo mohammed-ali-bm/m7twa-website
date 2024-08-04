@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Admin\Page\StatusPageRequest;
 use App\Http\Requests\Admin\Page\StorePageRequest;
 use App\Http\Requests\Admin\Page\UpdatePageRequest;
+use App\Http\Requests\StoreContactUsRequest;
+use App\Models\ContactUS;
 use App\Models\Page;
 use App\Models\Item;
 use App\Models\Offer;
@@ -34,6 +36,29 @@ class PageController extends Controller
     }
 
 
+    function privacy()
+    {
+
+        SEO::title("سياسة الخصوصية");
+        return view("pages.privacy");
+    }
+    function contactUs()
+    {
+
+        SEO::title("تواصل معنا");
+        return view("pages.contact-us");
+    }
+
+
+    function storeContactUs(StoreContactUsRequest $request)
+    {
+        $data = $request->validated();
+
+        ContactUS::create($data);
+
+        Toast::title("شكراً لك ")->success("تم ارسال رسالتك بنجاح")->centerBottom()->autoDismiss(2);
+        return redirect()->back()->with("success", "تم ارسال رسالتك  بنجاح");
+    }
 
 
     function view($slung)
@@ -42,98 +67,11 @@ class PageController extends Controller
         if ($page) {
 
             SEO::title($page->title)->description(__('main.site_description'))
-            ->keywords(__('main.site_keywords'));
+                ->keywords(__('main.site_keywords'));
 
             return view("layouts.frontend.pages.view", compact("page"));
         } else {
             return redirect()->route("home");
         }
-    }
-
-
-    public function edit(Page $page)
-    {
-
-        $page->logo = asset("images/" . $page->logo);
-        return view('pages.edit', compact("page"));
-    }
-
-    function store(StorePageRequest $request)
-    {
-
-
-
-        Page::create(["status" => "active"] + $request->validated());
-        Toast::title(__("all.added"))
-            ->message(__("all.page.added"))
-            ->success()
-            ->rightTop()
-
-            ->autoDismiss(15);
-        return redirect()->route('pages.index')
-            ->with('success', __("all.page.added"));
-    }
-
-
-    function  checkOfferPage()
-    {
-    }
-
-    function update(UpdatePageRequest $request, Page $page)
-    {
-
-
-        // check if new logo is uploaded 
-
-        $extra = [];
-        if ($request->hasFile("logo")) {
-            $logo = $request->file('logo');
-            $logo_name = time() . '.' . $logo->extension();
-            $logo->move(public_path('images'), $logo_name);
-            $extra = ["logo" => $logo_name];
-        }
-
-
-
-        $page->update($extra + $request->validated());
-        Toast::title(__("all.updated"))
-            ->message(__("all.page.updated"))
-            ->success()
-            ->rightTop()
-
-            ->autoDismiss(3);
-        return redirect()->route('pages.index')
-            ->with('success', __("all.page.updated"));
-    }
-
-    function updateStatus(StatusPageRequest $request, Page $page)
-    {
-
-
-
-
-
-        $page->update($request->validated());
-        Toast::title(__("all.updated"))
-            ->message(__("all.page.updated"))
-            ->success()
-            ->rightTop()
-
-            ->autoDismiss(3);
-        return redirect()->route('pages.index')
-            ->with('success', __("all.page.updated"));
-    }
-
-    function destroy(Page $page)
-    {
-        $page->delete();
-        // Toast::title(__("all.deleted"))
-        // ->message(__("all.page.deleted"))
-        // ->success()
-        // ->rightTop()
-        // 
-        // ->autoDismiss(15);
-        return redirect()->route('pages.index')
-            ->with('success', __("all.page.deleted"));
     }
 }

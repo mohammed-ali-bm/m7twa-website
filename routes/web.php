@@ -34,9 +34,9 @@ Route::middleware('splade')->group(function () {
 
     Route::get('/view', \App\Http\Controllers\IndexController::class . "@view")->name("view");
 
-    Route::get('/سياسة-الخصوصية', function(){
-        return view("pages.privacy");
-    })->name("pages.privacy");
+    Route::get('/سياسة-الخصوصية', \App\Http\Controllers\PageController::class . "@privacy")->name("pages.privacy");
+    Route::get('/تواصل معنا', \App\Http\Controllers\PageController::class . "@contactUs")->name("pages.contact-us");
+    Route::post('/تواصل معنا', \App\Http\Controllers\PageController::class . "@storeContactUs")->name("pages.contact-us.submit");
 
 
 

@@ -96,7 +96,10 @@
                         <a href="{{ asset('assets/files/fal.pdf') }}" target="_blank"><img
                                 src="{{ asset('assets/images/icons/fal.svg') }}" class="fal-logo"
                                 alt="رخصة فال العقارية" /></a>
-                        <Link href="{{ route('pages.privacy') }}">سياسة الخصوصية</Link>
+                        <div class="flex-apart">
+                            <Link href="{{ route('pages.privacy') }}">سياسة الخصوصية</Link>
+                            <Link href="{{ route('pages.contact-us') }}">تواصل معنا</Link>
+                        </div>
                         <Link href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}"
                             alt="logo" class="footer-logo"></Link>
                         <p class="footer-site-description">

@@ -4881,7 +4881,7 @@ body.registerProperty-not-supported button .shadow {
     color: #ccc;
 }
 
-.input-container .block input {
+.input-container .block input , .input-container .block textarea {
     background: #f2f2f2;
     color: #333;
 }
