@@ -60,6 +60,11 @@
 
             </ul>
         </div>
+
+        <div class="w-100 flex justify-content-center">
+        <Link away href="https://maps.app.goo.gl/UmNZgNXz1xmQzfJc7?g_st=iw" target="_blnak" class="secondary-button mr-auto ml-auto">عرض الموقع على قوقل ماب</Link>
+
+        </div>
     </div>
 
 

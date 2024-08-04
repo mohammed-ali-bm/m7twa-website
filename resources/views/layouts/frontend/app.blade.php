@@ -43,7 +43,7 @@
     <div class="intro-wrapper">
         <div class="site-header">
             <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="logo"
-                class="front-logo"></a>
+                    class="front-logo"></a>
             <nav class="site-nav">
                 <ul>
 
@@ -92,8 +92,13 @@
             <footer class="">
                 <div class="footer-content">
                     <div class="scroll-fade-only">
-                        <Link href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="logo"
-                            class="footer-logo"></Link>
+
+                        <a href="{{ asset('assets/files/fal.pdf') }}" target="_blank"><img
+                                src="{{ asset('assets/images/icons/fal.svg') }}" class="fal-logo"
+                                alt="رخصة فال العقارية" /></a>
+                        <Link href="{{ route('pages.privacy') }}">سياسة الخصوصية</Link>
+                        <Link href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}"
+                            alt="logo" class="footer-logo"></Link>
                         <p class="footer-site-description">
 
                             مجموعة أصول الدار للخدمات العقاريه والتطوير العقاري واعمال المقاولات
