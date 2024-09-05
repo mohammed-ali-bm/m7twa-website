@@ -17,7 +17,7 @@
 
         {{-- <h1> {{ $flat->name }}</h1> --}}
 
-        <img src="{{ asset('assets/images/banners/' . $flat->banner) }}" class="view-flat-banner"/>
+        <img src="{{ asset('assets/images/banners/' . $flat->banner) }}?version=1.0.0" class="view-flat-banner"/>
 
         
 

@@ -35,6 +35,13 @@ class PageController extends Controller
         return view('pages.create');
     }
 
+    public function gallery()
+    {
+
+        SEO::title("معرض الصور");
+        return view('images');
+    }
+
 
     function privacy()
     {
@@ -45,7 +52,10 @@ class PageController extends Controller
     function contactUs()
     {
 
-        SEO::title("تواصل معنا");
+        SEO::title("تواصل معنا");   
+
+
+
         return view("pages.contact-us");
     }
 
@@ -61,9 +71,9 @@ class PageController extends Controller
     }
 
 
-    function view($slung)
+    function view($slug)
     {
-        $page = Page::where("slung", $slung)->first();
+        $page = Page::where("slug", $slug)->first();
         if ($page) {
 
             SEO::title($page->title)->description(__('main.site_description'))

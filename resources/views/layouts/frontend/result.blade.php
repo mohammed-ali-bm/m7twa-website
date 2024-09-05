@@ -95,7 +95,7 @@
     <div class="page-container">
         <div class="py-6 app-layout">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden  sm:rounded-lg">
+                <div class=" overflow-hidden  sm:rounded-lg">
                     <div class=" p-3  ">
 
 
@@ -145,30 +145,47 @@
 
 
                             <div class="filters">
-                                <div class="inner">
-                                    <a class="btn-circle {{ activeClass('', request()->get('status')) }} "
-                                        href="{{ url('results') }}">
-                                        الكل
-                                    </a>
-                                    <a class="btn-circle {{ activeClass('done', request()->get('status')) }} "
-                                        href="?status=done">
+                                <div>
+                                    <div class="inner">
+                                            <a class="btn-circle {{ activeClass('', request()->get('status')) }} "
+                                                href="{{ url('results') }}">
+                                                الكل
+                                            </a>
+                                            <a class="btn-circle {{ activeClass('done', request()->get('status')) }} "
+                                                href="?status=done">
+                                                <i class="fi fi-rr-check"></i>
+                                                تم الحجز
+                                            </a>
+                                            <a class="btn-circle {{ activeClass('pending', request()->get('status')) }} "
+                                                href="?status=pending">
+                                                <i class="fi fi-rr-check"></i>
+                                                بإنتظار التواصل
+                                            </a>
+                                            <a class="btn-circle {{ activeClass('not_inertested', request()->get('status')) }}"
+                                                href="?status=not_inertested">
+                                                <i class="fi fi-rr-circle-xmark"></i>
+                                                غير مهتمين
+                                            </a>
+                                        </div>
+                                        <div class="inner">
+                                            <x-filter-button name="coupon" value="">الكل</x-filter-button>
 
-                                        <i class="fi fi-rr-check"></i>
-                                        تم الحجز
-                                    </a>
-                                    <a class="btn-circle {{ activeClass('pending', request()->get('status')) }} "
-                                        href="?status=pending">
+                                            @foreach ($coupons as $coupon)
+                                            <x-filter-button name="coupon" value="{{ $coupon->code  }}"> {{ $coupon->name }}</x-filter-button>
+                                                 
+                                            @endforeach
+                                        </div>
+                                        <div class="inner">
+                                            <x-filter-button name="flat_id" value="">الكل</x-filter-button>
 
-                                        <i class="fi fi-rr-check"></i>
-                                        بإنتظار التواصل
-                                    </a>
-                                    <a class="btn-circle {{ activeClass('not_inertested', request()->get('status')) }}"
-                                        href="?status=not_inertested">
-                                        <i class="fi fi-rr-circle-xmark"></i>
-                                        غير مهتمين
-                                    </a>
-
+                                            @foreach ($flats as $flat)
+                                            <x-filter-button name="flat_id" value="{{ $flat->id  }}"> {{ $flat->building . "-".$flat->name   }}</x-filter-button>
+                                                 
+                                            @endforeach
+                                        </div>
                                 </div>
+
+                                
                                 <a class="btn-circle" href="{{ request()->fullUrlWithQuery(['export' => 'true']) }}">
                                     <i class="fi fi-rr-file-export"></i>
 
@@ -178,9 +195,23 @@
                                 <div class="attended-item">
 
                                     <div class="name">
-                                        <h4>{{ $register->name }}</h4>
+                                        <h4>
+                                            <div class="">
+                                                <span>{{ $register->name }}</span>
+                                            </div>
+                                        </h4>
                                         <p> <i class="fi fi-rr-phone-flip d-none"></i> <a
                                                 href="tel:{{ $register->mobile }}">{{ $register->mobile }}</a></p>
+                                    </div>
+
+                                    <div class="name">
+                                        <h4>
+                                            <div class="">
+                                                <span>الشقة :{{ $register->flat != null ? ($register->flat->building . "-" . $register->flat->name):  "غير محدد" }}</span>
+                                                
+                                            </div>
+                                        </h4>
+                                        <p> كود المسوق : {{ $register->coupon ?? "لا يوجد" }}</p>
                                     </div>
                                     <div class="contact">
 

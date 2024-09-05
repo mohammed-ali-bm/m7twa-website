@@ -19,4 +19,11 @@ class Register extends Model
     protected $fillable = ['id', "name",   "mobile","service" , "flat_id",  "coupon" ,"status"];
 
 
+    function flat(){
+        return $this->belongsTo(Flat::class);
+    }
+
+    function coupon(){
+        return $this->belongsTo(Coupon::class , 'coupon' , 'code');
+    }
 }

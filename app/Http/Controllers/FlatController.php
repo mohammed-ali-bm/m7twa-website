@@ -25,7 +25,30 @@ class FlatController extends Controller
 
 
 
-    public function index()
+    public function index(Request $request)
+    {
+
+        SEO::title("قائمة الشقق");
+
+        if (in_array($request->set_status, ['pending', "done", "not_interested",])) {
+
+
+            $flat = Flat::find($request->id);
+
+            if ($flat) {
+                $flat->status = $request->set_status;
+                $flat->save();
+            }
+        }
+
+        $args['flats'] = \App\Models\Flat::all();
+
+
+        return view("flats.index", $args);
+    }
+
+
+    public function adminList()
     {
 
 
@@ -33,7 +56,7 @@ class FlatController extends Controller
         $args['flats'] = \App\Models\Flat::all();
 
 
-        return view("flats.index", $args);
+        return view("dashboard.flats.index", $args);
     }
     public function building($building)
     {
@@ -49,7 +72,7 @@ class FlatController extends Controller
     {
 
 
-    //    create and returns id of the flat
+        //    create and returns id of the flat
         $flat = Flat::create($request->validated());
         // $flat->status = "pending";
         $flat->save();
@@ -57,13 +80,13 @@ class FlatController extends Controller
         foreach ($request->attrs as $id  => $text) {
 
 
-         if($text != ""){
-            $attr = new \App\Models\AttrFlat();
-            $attr->attr_id = $id;
-            $attr->text = $text;
-            $attr->flat_id = $flat->id;
-            $attr->save();
-         }
+            if ($text != "") {
+                $attr = new \App\Models\AttrFlat();
+                $attr->attr_id = $id;
+                $attr->text = $text;
+                $attr->flat_id = $flat->id;
+                $attr->save();
+            }
         }
 
         return Toast::title(__("تم الاضافة بنجاح"))
@@ -82,16 +105,15 @@ class FlatController extends Controller
 
         return view("form", $args);
     }
-    
+
     public function show(Flat $flat)
     {
 
-        
+
         $flat->load('attrs');
         $args['flat'] = $flat;
 
         // return response()->json($args,   200);
         return view("flats.view", $args);
     }
-
 }

@@ -10,6 +10,14 @@ class StoreRegisterRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
+
+    //   convert mobile to english numbers
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'mobile' => convertToEnglishNumbers($this->mobile),
+        ]);
+    }
     public function authorize(): bool
     {
         return true;

@@ -35,11 +35,18 @@ Route::middleware('splade')->group(function () {
     Route::get('/view', \App\Http\Controllers\IndexController::class . "@view")->name("view");
 
     Route::get('/سياسة-الخصوصية', \App\Http\Controllers\PageController::class . "@privacy")->name("pages.privacy");
-    Route::get('/تواصل معنا', \App\Http\Controllers\PageController::class . "@contactUs")->name("pages.contact-us");
-    Route::post('/تواصل معنا', \App\Http\Controllers\PageController::class . "@storeContactUs")->name("pages.contact-us.submit");
+    Route::get('/تواصل-معنا', \App\Http\Controllers\PageController::class . "@contactUs")->name("pages.contact-us");
+    Route::post('/تواصل-معنا', \App\Http\Controllers\PageController::class . "@storeContactUs")->name("pages.contact-us.submit");
 
 
+    // Route::get("تواصل-معنا", \App\Http\Controllers\ContactController::class . "@index")->name("contact.index");
+    // Route::post("تواصل-معنا", \App\Http\Controllers\ContactController::class . "@submit")->name("contact.submit");
 
+    Route::get('/معرض-الصور', \App\Http\Controllers\PageController::class . "@gallery")->name("pages.gallery");
+
+
+    Route::resource('orders', \App\Http\Controllers\OrderController::class);
+    Route::resource('services', \App\Http\Controllers\ServiceController::class);
 
     Route::get('/flats/building/{building}', \App\Http\Controllers\FlatController::class . "@building")->name("flats.building");
 
@@ -59,9 +66,6 @@ Route::middleware('splade')->group(function () {
     Route::get("سجل-نشاطك-التجاري", \App\Http\Controllers\Frontend\BusinessController::class . "@registerView")->name("frontend.businesses.register");
     Route::post("سجل-نشاطك-التجاري", \App\Http\Controllers\Frontend\BusinessController::class . "@store")->name("frontend.businesses.register");
 
-
-    Route::get("تواصل-معنا", \App\Http\Controllers\ContactController::class . "@index")->name("contact.index");
-    Route::post("تواصل-معنا", \App\Http\Controllers\ContactController::class . "@submit")->name("contact.submit");
 
 
     Route::get('/', \App\Http\Controllers\IndexController::class . "@home")->name("home");
@@ -124,6 +128,7 @@ Route::middleware('splade')->group(function () {
         Route::get('/results', \App\Http\Controllers\IndexController::class . "@result")->name("results");
 
 
+        Route::get('/dashboard/flats', \App\Http\Controllers\FlatController::class . "@adminList")->name("dashboard.flats.list");
 
 
         Route::resource('sessions', \App\Http\Controllers\SessionController::class);
@@ -145,16 +150,11 @@ Route::middleware('splade')->group(function () {
         Route::put("offers/{offer}/status", \App\Http\Controllers\OfferController::class . "@updateStatus")->name("offers.status");
 
 
-        Route::resource('orders', \App\Http\Controllers\OrderController::class);
-        Route::put("orders/{order}/status", \App\Http\Controllers\OrderController::class . "@updateStatus")->name("orders.status");
-
-
+        
         Route::resource('products', \App\Http\Controllers\ProductController::class);
         Route::put("products/{product}/status", \App\Http\Controllers\ProductController::class . "@updateStatus")->name("products.status");
 
 
-
-        Route::resource('orders', \App\Http\Controllers\OrderController::class);
 
 
         Route::resource('items', \App\Http\Controllers\itemController::class);
