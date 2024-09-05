@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 
@@ -13,16 +14,16 @@ class Setting extends Model
         'options' => 'array',
     ];
 
-    public static function getSettings()
-    {
-        return Cache::rememberForever('settings', function () {
-            return self::all()->pluck('value', 'key')->toArray();
-        });
-    }
+    // public static function getSettings()
+    // {
+    //     return Cache::rememberForever('settings', function () {
+    //         return self::all()->pluck('value', 'key')->toArray();
+    //     });
+    // }
 
-    public static function updateCache()
-    {
-        Cache::forget('settings');
-        self::getSettings();
-    }
+    // public static function updateCache()
+    // {
+    //     Cache::forget('settings');
+    //     self::getSettings();
+    // }
 }
