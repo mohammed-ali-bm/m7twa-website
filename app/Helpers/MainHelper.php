@@ -1585,9 +1585,7 @@ function calculateAvg($factors)
 
 function setting($key, $default = null)
 {
-    $settings = Cache::get('settings', []);
-
-    return $settings[$key] ?? $default;
+ 
 }
 
 
